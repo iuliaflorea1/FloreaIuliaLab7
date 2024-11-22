@@ -30,6 +30,19 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+            <!-- Profile Image -->
+            <Image Source="icon1.png" 
+               SemanticProperties.Description="Profile Image"
+               HeightRequest="150" 
+               WidthRequest="150" 
+               HorizontalOptions="Center" />
+
+            <!-- Name -->
+            <Label Text="Name: Iulia Florea"
+               FontSize="22" 
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
         </VerticalStackLayout>
     </ScrollView>
 
