@@ -9,6 +9,7 @@ public partial class ListPage : ContentPage
 		InitializeComponent();
 	}
 
+
     async void OnSaveButtonClicked(object sender, EventArgs e)
     {
         var slist = (ShopList)BindingContext;
@@ -35,7 +36,7 @@ public partial class ListPage : ContentPage
     }
     async void OnAddButtonClicked(object sender, EventArgs e)
     {
-
+        var sl = (ShopList)BindingContext;
         Product p;
         if (listView.SelectedItem != null)
         {
@@ -49,6 +50,24 @@ public partial class ListPage : ContentPage
             p.ListProducts = new List<ListProduct> { lp };
 
             await Navigation.PopAsync();
+        }
+    }
+
+    async void OnRemoveButtonClicked(object sender, EventArgs e)
+    {
+        var product = listView.SelectedItem as Product;
+        if (product != null)
+        {
+            var confirm = await DisplayAlert("Confirm Delete", $"Are you sure you want to remove ?", "Yes", "No");
+            if (confirm)
+            {
+                await App.Database.DeleteProductAsync(product);
+                listView.ItemsSource = await App.Database.GetProductsAsync();
+            }
+        }
+        else
+        {
+            await DisplayAlert("Error", "Please select an item to remove.", "OK");
         }
     }
 

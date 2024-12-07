@@ -4,6 +4,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FloreaIuliaLab7.ListPage"
              Title="ListPage">
+    <ContentPage.Resources>
+        <Style TargetType="Editor">
+            <Style.Triggers>
+                <Trigger TargetType="Editor" Property="IsFocused" Value="False">
+                    <Setter Property="BackgroundColor" Value="Transparent" />
+                    <Setter Property="TextColor" Value="White" />
+                </Trigger>
+                <Trigger TargetType="Editor" Property="IsFocused" Value="True">
+                    <Setter Property="BackgroundColor" Value="Transparent" />
+                    <Setter Property="TextColor" Value="White" />
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
+    </ContentPage.Resources>
     <StackLayout Margin="20">
         <Editor Placeholder="Enter the description of the shopping list" 
                 Text="{Binding Description}" 
@@ -32,7 +47,17 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        <Button Text="Add/Choose Item to buy" MaximumWidthRequest="300" Clicked="OnChooseButtonClicked"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Add/Choose Item to buy" MaximumWidthRequest="200"
+ Clicked="OnChooseButtonClicked"/>
+            <Button Grid.Column="1" Text="Remove item" MaximumWidthRequest="200"
+ Clicked="OnRemoveButtonClicked" />
+        </Grid>
+
     </StackLayout>
 </ContentPage>
