@@ -110,5 +110,9 @@ namespace FloreaIuliaLab7.Data
                 return _database.InsertAsync(shop);
             }
         }
+        public async Task<int> DeleteShopAsync(Shop shop)
+        {
+            return await _database.DeleteAsync(shop);
+        }
     }
 }
